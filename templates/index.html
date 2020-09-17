@@ -34,13 +34,14 @@
 				</nav>
 			</div>
 		</header>
+		
 		<div id="body" class="container">
 				<div class="row">
 					<div class="col-md-8">
 						<h1>最新发布</h1>
 						<!-- 标题，标签，分类，留言总数，发布时间 -->
-						<article>
-							<h2><a href="#">这是我的第一篇文章</a></h2>
+						<article id='article'>
+							<h2><a href="#" id="title"></a></h2>
 							<div class="row">
 								<div class="col-md-6 col-sm-6">
 									<span class="glyphicon glyphicon-folder-open"></span>&nbsp;&nbsp;<a href="">标签</a>    
@@ -63,53 +64,6 @@
 							<hr >
 						</article>
 						
-						<article>
-							<h2><a href="#">这是我的第一篇文章</a></h2>
-							<div class="row">
-								<div class="col-md-6 col-sm-6">
-									<span class="glyphicon glyphicon-folder-open"></span>&nbsp;&nbsp;<a href="">标签</a>    
-									&nbsp;&nbsp;<span class="glyphicon glyphicon-tags"></span>&nbsp;&nbsp;<a href="">分类1</a>，<a href="">分类2</a>，<a href="">分类3</a>
-								</div>
-								<div class="col-md-6 col-sm-6">
-									<span class="glyphicon glyphicon-comment"></span>&nbsp;&nbsp;<a href="">200条评论</a>
-									&nbsp;&nbsp;<span class="glyphicon glyphicon-time"></span>&nbsp;&nbsp;<a href="">2020年8月27日上午10点03分</a>
-								</div>
-							</div>
-							<hr >
-							
-							<img src="http://placekitten.com/900/300" class="img-responsive">
-							<br />
-							<p class="lead">一言是创建于 2016 年的项目，起初是用于个人目的</p>
-							<p>
-								一言是创建于 2016 年的项目，起初是用于个人目的。目前已经转为公益项目，由萌创团队运营，为大家提供服务。 所谓一言（ヒトコト），即一句话。这句话可以是传达了感动，可以是博人一笑，可以是发人深思。总之，一言，代表着言语的触动，灵魂的交流。
-							</p>
-							<p class="text-right"><a href="single_article.html">阅读全文...</a></p>
-							<hr >
-						</article>
-						
-						<article>
-							<h2><a href="#">这是我的第一篇文章</a></h2>
-							<div class="row">
-								<div class="col-md-6 col-sm-6">
-									<span class="glyphicon glyphicon-folder-open"></span>&nbsp;&nbsp;<a href="">标签</a>    
-									&nbsp;&nbsp;<span class="glyphicon glyphicon-tags"></span>&nbsp;&nbsp;<a href="">分类1</a>，<a href="">分类2</a>，<a href="">分类3</a>
-								</div>
-								<div class="col-md-6 col-sm-6">
-									<span class="glyphicon glyphicon-comment"></span>&nbsp;&nbsp;<a href="">200条评论</a>
-									&nbsp;&nbsp;<span class="glyphicon glyphicon-time"></span>&nbsp;&nbsp;<a href="">2020年8月27日上午10点03分</a>
-								</div>
-							</div>
-							<hr >
-							
-							<img src="http://placekitten.com/900/300" class="img-responsive">
-							<br />
-							<p class="lead">一言是创建于 2016 年的项目，起初是用于个人目的</p>
-							<p>
-								一言是创建于 2016 年的项目，起初是用于个人目的。目前已经转为公益项目，由萌创团队运营，为大家提供服务。 所谓一言（ヒトコト），即一句话。这句话可以是传达了感动，可以是博人一笑，可以是发人深思。总之，一言，代表着言语的触动，灵魂的交流。
-							</p>
-							<p class="text-right"><a href="single_article.html">阅读全文...</a></p>
-							<hr >
-						</article>
 						
 						<!-- 分页 -->
 						<ul class="pager">
@@ -117,6 +71,7 @@
 						    <li class="next"><a href="#">下一页 <span aria-hidden="true">&rarr;</span></a></li>
 						  </ul>
 					</div>
+					<!-- 侧边框 -->
 					<div class="col-md-4">
 						<!-- RSS订阅，最新文章（5），分类，标签云，最新评论 -->
 						<div class="well text-center">
@@ -186,6 +141,7 @@
 					</div>
 				</div>
 		</div>
+		<!-- 底部 -->
 		<footer>
 			<div class="container">
 				<hr >
@@ -195,4 +151,24 @@
 	</body>
 	<script src="bootstrap-custom/js/jquery-3.5.1.js" type="text/javascript" charset="utf-8"></script>
 	<script src="bootstrap-custom/js/bootstrap.min.js" type="text/javascript" charset="utf-8"></script>
+	<script type="text/javascript">
+		$(document).ready(function(){
+			$ajax({
+				url:"",
+				type:"GET",
+				cache:false,
+				dataType:"json",
+				async:true,
+				success:function(data){
+					for(var i=0; i<data.length;i++){
+						$("#article").html(data[i].title)
+					}
+					console.log(data)
+				},
+				error:function(err){
+					console.log(err)
+				}
+			})
+		})
+	</script>
 </html>

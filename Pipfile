@@ -12,6 +12,10 @@ pillow = "*"
 djangorestframework = "*"
 markdown = "*"
 django-filter = "*"
+pygments = "*"
+django-coreapi = "*"
+django-cors-headers = "*"
+pyyaml = "*"
 
 [requires]
 python_version = "3.7"

@@ -40,12 +40,12 @@ INSTALLED_APPS = [
     'log.apps.LogConfig',
     'rest_framework',
     'django_filters',
-    'rest_framework.authtoken'
 ]
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
+    'corsheaders.middleware.CorsMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
@@ -127,3 +127,34 @@ USE_TZ = False
 STATIC_URL = '/static/'
 STATIC_POOT = os.path.join(BASE_DIR, "static")
 
+# DRF全局配置
+REST_FRAMEWORK = {
+    # 文档生成
+    'DEFAULT_SCHEMA_CLASS': 'rest_framework.schemas.coreapi.AutoSchema',
+
+    # 渲染器
+    'DEFAULT_RENDERER_CLASSES': [
+        'rest_framework.renderers.JSONRenderer',
+        'rest_framework.renderers.BrowsableAPIRenderer',
+    ],
+    # 解析器
+    'DEFAULT_PARSER_CLASSES': [
+        'rest_framework.parsers.JSONParser',
+        'rest_framework.parsers.FormParser',
+        'rest_framework.parsers.MultiPartParser',
+    ],
+
+    # 认证
+    'DEFAULT_AUTHENTICATION_CLASSES': [
+        'rest_framework.authentication.BasicAuthentication',
+        'rest_framework.authentication.SessionAuthentication', # session认证
+        'rest_framework.authentication.TokenAuthentication',  # 注册token令牌认证
+    ],
+
+    # 权限
+    # 'DEFAULT_PERMISSION_CLASSES': [
+    #     'rest_framework.permissions.IsAuthenticated',
+    # ],
+}
+
+CORS_ORIGIN_ALLOW_ALL = True
